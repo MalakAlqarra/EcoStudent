@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جدول المحاضرات | Portal EcoStudent</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { display: flex; height: 100vh; background: #f4f7f6; }
+        .sidebar { width: 250px; background: #2e7d32; color: white; padding: 20px; display: flex; flex-direction: column; }
+        .sidebar a { color: white; text-decoration: none; padding: 12px; margin: 5px 0; border-radius: 8px; transition: 0.3s; }
+        .sidebar a:hover, .sidebar a.active { background: #1b5e20; }
+        
+        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
+        
+        .schedule-container { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        
+        .schedule-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .schedule-table th, .schedule-table td { border: 1px solid #eee; padding: 15px; text-align: center; width: 16%; }
+        .schedule-table th { background: #2e7d32; color: white; }
+        
+        .course-slot { background: #e8f5e9; border-right: 4px solid #4caf50; padding: 5px; border-radius: 4px; font-size: 13px; color: #2e7d32; }
+        .empty-slot { color: #ccc; font-style: italic; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>EcoStudent 🌿</h2>
+        <a href="dashboard.html">الرئيسية</a>
+        <a href="registration.html">تسجيل المساقات</a>
+        <a href="schedule.html" class="active">جدول المحاضرات</a>
+        <a href="gpa.html">المعدل التراكمي</a>
+        <a href="javascript:void(0)" onclick="logout()" style="margin-top: auto; background: #c62828;">تسجيل الخروج</a>
+    </div>
+
+    <div class="main-content">
+        <h1>جدول المحاضرات الأسبوعي</h1>
+        <p>هنا يمكنك عرض مواعيد محاضراتك للمواد التي قمت بتسجيلها.</p>
+        
+        <div class="schedule-container">
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>الوقت</th>
+                        <th>الأحد</th>
+                        <th>الاثنين</th>
+                        <th>الثلاثاء</th>
+                        <th>الأربعاء</th>
+                        <th>الخميس</th>
+                    </tr>
+                </thead>
+                <tbody id="scheduleBody">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', generateSchedule);
+    </script>
+</body>
+</html>

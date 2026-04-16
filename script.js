@@ -147,3 +147,45 @@ function searchCourses() {
         `;
     });
 }
+// إضافة مواعيد وهمية للمواد الموجودة مسبقاً في script.js
+const courseTimes = {
+    'CS101': { day: 'الأحد', time: '08:00 - 09:30' },
+    'MATH201': { day: 'الاثنين', time: '10:00 - 11:30' },
+    'ENG101': { day: 'الأحد', time: '11:00 - 12:30' },
+    'SWE302': { day: 'الثلاثاء', time: '08:00 - 09:30' },
+    'DB202': { day: 'الأربعاء', time: '12:00 - 01:30' }
+};
+
+function generateSchedule() {
+    const scheduleBody = document.getElementById('scheduleBody');
+    if (!scheduleBody) return;
+
+    // استرجاع المواد التي سجلها الطالب من الـ LocalStorage
+    const myRegisteredCourses = JSON.parse(localStorage.getItem('myRegisteredCourses')) || [];
+    
+    // الأوقات المقترحة للجدول
+    const timeSlots = ['08:00 - 09:30', '10:00 - 11:30', '12:00 - 01:30'];
+    const days = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس'];
+
+    scheduleBody.innerHTML = '';
+
+    timeSlots.forEach(slot => {
+        let row = `<tr><td>${slot}</td>`;
+        
+        days.forEach(day => {
+            // ابحث إذا كان هناك مادة مسجلة في هذا اليوم وهذا الوقت
+            const courseInSlot = myRegisteredCourses.find(c => 
+                courseTimes[c.id] && courseTimes[c.id].day === day && courseTimes[c.id].time === slot
+            );
+
+            if (courseInSlot) {
+                row += `<td><div class="course-slot"><b>${courseInSlot.name}</b><br>${courseInSlot.id}</div></td>`;
+            } else {
+                row += `<td><span class="empty-slot">-</span></td>`;
+            }
+        });
+
+        row += `</tr>`;
+        scheduleBody.innerHTML += row;
+    });
+}
