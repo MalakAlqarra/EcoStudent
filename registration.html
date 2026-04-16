@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل المساقات | Portal EcoStudent</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { display: flex; height: 100vh; background: #f4f7f6; }
+        .sidebar { width: 250px; background: #2e7d32; color: white; padding: 20px; display: flex; flex-direction: column; }
+        .sidebar a { color: white; text-decoration: none; padding: 12px; margin: 5px 0; border-radius: 8px; transition: 0.3s; }
+        .sidebar a:hover { background: #1b5e20; }
+        .sidebar a.active { background: #1b5e20; font-weight: bold; }
+        
+        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
+        
+        .search-section { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 20px; display: flex; gap: 10px; }
+        .search-section input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px; }
+        .search-section button { padding: 10px 25px; background: #2e7d32; color: white; border: none; border-radius: 8px; cursor: pointer; }
+
+        .courses-table { width: 100%; border-collapse: collapse; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .courses-table th, .courses-table td { padding: 15px; text-align: right; border-bottom: 1px solid #eee; }
+        .courses-table th { background: #f8fcf8; color: #2e7d32; }
+        
+        .add-btn { background: #4caf50; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; transition: 0.3s; }
+        .add-btn:hover { background: #388e3c; }
+        .add-btn.disabled { background: #ccc; cursor: not-allowed; }
+
+        .registered-section { margin-top: 40px; }
+        .remove-btn { background: #e53935; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>EcoStudent 🌿</h2>
+        <a href="dashboard.html">الرئيسية</a>
+        <a href="registration.html" class="active">تسجيل المساقات</a>
+        <a href="schedule.html">جدول المحاضرات</a>
+        <a href="gpa.html">المعدل التراكمي</a>
+        <a href="javascript:void(0)" onclick="logout()" style="margin-top: auto; background: #c62828;">تسجيل الخروج</a>
+    </div>
+
+    <div class="main-content">
+        <h1>إدارة تسجيل المساقات</h1>
+        
+        <div class="search-section">
+            <input type="text" id="courseSearch" placeholder="ابحث عن مادة بالكود أو الاسم (مثلاً: CS101)...">
+            <button onclick="searchCourses()">بحث</button>
+        </div>
+
+        <h3>المساقات المتاحة</h3>
+        <table class="courses-table">
+            <thead>
+                <tr>
+                    <th>كود المادة</th>
+                    <th>اسم المساق</th>
+                    <th>الساعات</th>
+                    <th>الإجراء</th>
+                </tr>
+            </thead>
+            <tbody id="availableCourses">
+                </tbody>
+        </table>
+
+        <div class="registered-section">
+            <h3>المساقات المسجلة حالياً</h3>
+            <table class="courses-table">
+                <thead>
+                    <tr>
+                        <th>كود المادة</th>
+                        <th>اسم المساق</th>
+                        <th>الساعات</th>
+                        <th>الإجراء</th>
+                    </tr>
+                </thead>
+                <tbody id="myCourses">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // تشغيل عرض المواد عند فتح الصفحة
+        document.addEventListener('DOMContentLoaded', displayCourses);
+    </script>
+</body>
+</html>

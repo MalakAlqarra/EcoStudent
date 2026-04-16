@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم | Portal EcoStudent</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* تنسيقات خاصة بلوحة التحكم */
+        body { display: flex; height: 100vh; background: #f4f7f6; }
+        
+        .sidebar {
+            width: 250px;
+            background: #2e7d32;
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar h2 { font-size: 20px; margin-bottom: 30px; text-align: center; border-bottom: 1px solid #ffffff33; padding-bottom: 10px; }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            margin: 5px 0;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover, .sidebar a.active { background: #1b5e20; }
+
+        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
+
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+
+        .welcome-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-right: 5px solid #2e7d32;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .stat-item h3 { color: #2e7d32; font-size: 24px; }
+        .stat-item p { color: #666; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>EcoStudent 🌿</h2>
+        <a href="dashboard.html" class="active">الرئيسية</a>
+        <a href="registration.html">تسجيل المساقات</a>
+        <a href="schedule.html">جدول المحاضرات</a>
+        <a href="gpa.html">المعدل التراكمي</a>
+<a href="javascript:void(0)" onclick="logout()" style="margin-top: auto; background: #c62828;">تسجيل الخروج</a>    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1 id="welcomeTitle">مرحباً بك، طالبنا العزيز</h1>
+            <div class="user-info">
+                <span id="displayUser"></span> 👤
+            </div>
+        </div>
+
+        <div class="welcome-card">
+            <h3>نظام Portal EcoStudent يرحب بك!</h3>
+            <p>يمكنك من هنا البدء بإدارة رحلتك الأكاديمية بكل سهولة واستدامة.</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-item">
+                <p>الساعات المسجلة</p>
+                <h3>15</h3>
+            </div>
+            <div class="stat-item">
+                <p>المعدل التراكمي</p>
+                <h3>3.8</h3>
+            </div>
+            <div class="stat-item">
+                <p>المساقات المتبقية</p>
+                <h3>24</h3>
+            </div>
+        </div>
+    </div>
+
+   
+</body>
+</html>
